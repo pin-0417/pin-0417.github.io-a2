@@ -4,69 +4,125 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Music Album - playlist</title>
-    <!-- add the font family of your choice -->
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
     <!-- Navigation Section -->
-    <!-- I used the artist's name as a link to the homepage and changed the navigation to information related to the music album. -->
+    <!-- The navigation separates the different layers of the web experience, 
+     keep the overall page clean, but still allow users to explore various 
+     information through the nav bar. I used the artist's name as a link to 
+     the homepage and changed the navigation to the information that related 
+     to the music album. -->
     <header>
       <div class="nav-container">
-        <a href="#home" class="home">Yehezkel Raz</a>
+        <a href="index.html" class="home">Yehezkel Raz</a>
       </div>
       <nav>
         <ul class="nav">
-          <a href="#about">About</a>
-          <a href="#album">Album</a>
-          <a href="#playlist">Playlist</a>
+          <a href="about.html">About</a>
+          <a href="album.html">Album</a>
+          <a href="playlist.html">Playlist</a>
         </ul>
       </nav>
     </header>
-
+    <!-- I divide the page into left and right. 
+ The playlist on the left allows people to browse the tracks clearly,
+  but at the same time, they can also get more clear information about 
+  the selected songs and control the player in the column on the right,
+   making the page have high accessibility and usability. -->
     <main class="container">
-      <!-- Main Content Section -->
-      <!-- Media Player Section -->
-      <div class="media-player">
-        <video id="custom-video-player" controls>
-          <source
-            src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/miac.mp4"
-            type="video/mp4"
-          />
-        </video>
-        <div class="custom-controls">
-          <button id="play-pause-btn" onclick="togglePlayPause()">
-            <img
-              id="play-pause-img"
-              src="https://img.icons8.com/ios-glyphs/30/play--v1.png"
-              alt="Play Button"
-              width="24"
-              height="24"
-            />
-          </button>
-          <!-- add the missing buttons or functionality here -->
-          <div class="progress-bar">
-            <span id="progress-bar-fill"></span>
+      <!-- Tracklist Section - left -->
+      <section class="tracklist-container">
+        <h2 id="tracklist-title">Playlist</h2>
+        <div class="tracklist-content" role="listbox" aria-label="Tracks">
+          <ul class="tracklist"></ul>
+        </div>
+      </section>
+
+      <!-- Cover and media player - right-->
+      <section class="cover-player">
+        <figure class="playlist-cover">
+          <img src="album-cover.png" alt="album-cover" />
+        </figure>
+        <div class="song-title"></div>
+        <!-- Media Player Section -->
+        <div class="media-player">
+          <audio id="custom-audio-player" preload="metadata" hidden></audio>
+          <div class="custom-controls">
+            <button id="shuffle-btn" onclick="togglePlayPause()">
+              <img
+                id="shuffle-img"
+                src="https://img.icons8.com/?size=100&id=91479&format=png&color=000000"
+                alt="Shuffle Button"
+                width="24"
+                height="24"
+              />
+            </button>
+            <button id="repeat-btn" onclick="togglePlayPause()">
+              <img
+                id="repeat-img"
+                src="https://img.icons8.com/?size=100&id=91481&format=png&color=000000"
+                alt="Repeat Button"
+                width="24"
+                height="24"
+              />
+            </button>
+            <button id="end-btn" onclick="togglePlayPause()">
+              <img
+                id="end-img"
+                src="https://img.icons8.com/?size=100&id=9m6KWcXqAqBT&format=png&color=000000"
+                alt="End Button"
+                width="24"
+                height="24"
+              />
+            </button>
+            <button id="play-pause-btn" onclick="togglePlayPause()">
+              <img
+                id="play-pause-img"
+                src="https://img.icons8.com/ios-glyphs/30/play--v1.png"
+                alt="Play Button"
+                width="24"
+                height="24"
+              />
+            </button>
+            <button id="skip-btn" onclick="togglePlayPause()">
+              <img
+                id="skip-img"
+                src="https://img.icons8.com/?size=100&id=YTSDoX6z463S&format=png&color=000000"
+                alt="Skip Button"
+                width="24"
+                height="24"
+              />
+            </button>
+            <button id="replay-btn" onclick="togglePlayPause()">
+              <img
+                id="replay-img"
+                src="https://img.icons8.com/?size=100&id=91644&format=png&color=000000"
+                alt="Replay Button"
+                width="24"
+                height="24"
+              />
+            </button>
+            <button id="mute-btn" onclick="togglePlayPause()">
+              <img
+                id="mute-img"
+                src="https://img.icons8.com/?size=100&id=91635&format=png&color=000000"
+                alt="Mute Button"
+                width="24"
+                height="24"
+              />
+            </button>
+            <div class="progress-bar">
+              <span id="progress-bar-fill"></span>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- Additional Content Section -->
-      <section>
-        <h2>Additional Content</h2>
-        <p>This is where you can showcase any other relevant content.</p>
-        <!-- Add more content as needed -->
       </section>
     </main>
 
     <!-- Footer Section -->
-    <footer>
-      <p>&copy; 2024 Media Player Website. All rights reserved.</p>
-      <a href="https://icons8.com/icon/59862/play">Play</a> icon by
-      <a href="https://icons8.com">Icons8</a>
-      <a href="https://icons8.com/icon/61012/pause">Pause</a> icon by
-      <a href="https://icons8.com">Icons8</a>
-    </footer>
+    <footer></footer>
   </body>
 </html>
