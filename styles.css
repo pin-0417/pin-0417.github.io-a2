@@ -16,6 +16,13 @@ a {
   color: rgb(255, 255, 255);
 }
 /* home page */
+/* I designed this homepage with concise and poster-style, which 
+I use the album photo as the background of the homepage and overlay 
+with a dark gradient to create a contast with the light color texts 
+and brings an immediate mood to the users. The large title in the 
+centre can quickly grab people's attention, also the only primary 
+action("Explore the album") reduces the decision fatigue before
+listening begins and directly navigate them to the playlist page.   */
 .home-page .home-bg {
   inset: 0;
   position: fixed;
@@ -61,9 +68,16 @@ a {
   font-weight: 600;
   font-style: normal;
   background: white;
-  border-radius: 8px;
+  border-radius: 15px;
+}
+/* The button will change the color and become slightly bigger 
+while hovering, which increases the accessibility.  */
+.explore-btn:hover {
+  transform: scale(1.2);
+  color: rgb(115, 133, 170);
 }
 
+/* playlist */
 .double-border {
   border: 6px double rgb(65, 41, 27);
   border-radius: 16px;
