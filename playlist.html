@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Music Album - playlist</title>
     <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Diplomata+SC&family=Lugrasimo&family=Sedan+SC&display=swap"
+      rel="stylesheet"
+    />
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -15,15 +21,15 @@
      information through the nav bar. I used the artist's name as a link to 
      the homepage and changed the navigation to the information that related 
      to the music album. -->
-    <header>
+    <header class="top-header">
       <div class="nav-container">
         <a href="index.html" class="home">Yehezkel Raz</a>
       </div>
-      <nav>
+      <nav class="primary-nav" aria-label="Primary">
         <ul class="nav">
-          <a href="about.html">About</a>
-          <a href="album.html">Album</a>
-          <a href="playlist.html">Playlist</a>
+          <li><a href="about.html">About</a></li>
+          <li><a href="album.html">Album</a></li>
+          <li><a href="playlist.html">Playlist</a></li>
         </ul>
       </nav>
     </header>
@@ -52,69 +58,59 @@
           to support the accessibility for users, which give them the smooth and
           low-friction experience. -->
         <div class="media-player">
-          <audio id="custom-audio-player" preload="metadata" hidden></audio>
+          <audio id="audioPlayer" preload="metadata"></audio>
           <div class="custom-controls">
-            <button id="shuffle-btn" onclick="togglePlayPause()">
+            <button id="shuffle-btn" aria-label="Shuffle" aria-pressed="false">
               <img
                 id="shuffle-img"
                 src="https://img.icons8.com/?size=100&id=91479&format=png&color=000000"
                 alt="Shuffle Button"
-                width="24"
-                height="24"
               />
             </button>
-            <button id="repeat-btn" onclick="togglePlayPause()">
+            <button
+              id="repeat-btn"
+              aria-label="Repeat mode"
+              aria-pressed="false"
+            >
               <img
                 id="repeat-img"
                 src="https://img.icons8.com/?size=100&id=91481&format=png&color=000000"
                 alt="Repeat Button"
-                width="24"
-                height="24"
               />
             </button>
-            <button id="end-btn" onclick="togglePlayPause()">
+            <button id="end-btn" aria-label="End" aria-pressed="false">
               <img
                 id="end-img"
                 src="https://img.icons8.com/?size=100&id=9m6KWcXqAqBT&format=png&color=000000"
                 alt="End Button"
-                width="24"
-                height="24"
               />
             </button>
-            <button id="play-pause-btn" onclick="togglePlayPause()">
+            <button id="play-pause-btn" aria-label="Play">
               <img
                 id="play-pause-img"
                 src="https://img.icons8.com/ios-glyphs/30/play--v1.png"
                 alt="Play Button"
-                width="24"
-                height="24"
               />
             </button>
-            <button id="skip-btn" onclick="togglePlayPause()">
+            <button id="skip-btn" aria-label="Skip">
               <img
                 id="skip-img"
                 src="https://img.icons8.com/?size=100&id=YTSDoX6z463S&format=png&color=000000"
                 alt="Skip Button"
-                width="24"
-                height="24"
               />
             </button>
-            <button id="replay-btn" onclick="togglePlayPause()">
+            <button id="replay-btn" aria-label="Replay">
               <img
                 id="replay-img"
                 src="https://img.icons8.com/?size=100&id=91644&format=png&color=000000"
                 alt="Replay Button"
-                width="24"
-                height="24"
               />
             </button>
-            <button id="mute-btn" onclick="togglePlayPause()">
+            <button id="mute-btn" aria-label="Mute" aria-pressed="false">
               <img
                 id="mute-img"
                 src="https://img.icons8.com/?size=100&id=91635&format=png&color=000000"
                 alt="Mute Button"
-                width="24"
-                height="24"
               />
             </button>
             <div class="progress-bar">

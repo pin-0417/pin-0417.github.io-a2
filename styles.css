@@ -15,6 +15,47 @@ body {
 a {
   color: rgb(255, 255, 255);
 }
+/* header */
+.top-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 20px 18px;
+  color: white;
+  border-bottom: 1px solid var(--header-line);
+}
+
+.nav-container {
+  flex: 0 0 auto;
+  margin-right: auto;
+}
+.nav-container .home {
+  display: inline-block;
+  font-family: "Diplomata SC", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+}
+
+.primary-nav {
+  flex: 1 1 auto;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  min-width: 260px;
+}
 /* home page */
 /* I designed this homepage with concise and poster-style, which 
 I use the album photo as the background of the homepage and overlay 
@@ -78,16 +119,15 @@ while hovering, which increases the accessibility.  */
 }
 
 /* playlist */
-.double-border {
-  border: 6px double rgb(65, 41, 27);
-  border-radius: 16px;
+button {
+  height: 50px;
+  width: 50px;
 }
 
-video {
-  width: 800px;
-  /* width: 100%; */
-  height: auto;
-  border-radius: 12px;
+.container {
+  display: grid;
+  grid-template-columns: minmax(240px, 360px) 1fr;
+  min-height: calc(100dvh - 64px);
 }
 
 h1 {
