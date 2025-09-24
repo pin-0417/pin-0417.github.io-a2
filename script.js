@@ -55,6 +55,17 @@ const tracks = [
     cover: "album-cover.png",
   },
 ];
+const audioPlayer = document.getElementById("audioPlayer");
+const playPauseBtn = document.querySelector("#play-pause-btn");
+
+// track
+function loadTrack(i) {
+  index = i;
+  const t = tracks[i];
+  audioPlayer.src = t.src;
+  songTitle.textContent = t.title;
+  coverImg.src = t.cover;
+}
 // shuffle button
 
 // play and pause button
@@ -67,9 +78,11 @@ const playPauseImg = document.querySelector("#play-pause-img");
 console.log(playPauseImg);
 
 function togglePlayback() {
+  if (!audioPlayer.src) loadTrack(0);
   if (audioPlayer.paused || audioPlayer.ended) {
     audioPlayer.play();
     playPauseImg.src = "https://img.icons8.com/ios-glyphs/30/play--v1.png";
+    playPauseButton.setAttribute("aria-label", "Pause");
   } else {
     audioPlayer.pause();
     playPauseImg.src =
