@@ -57,14 +57,20 @@ const tracks = [
 ];
 const audioPlayer = document.getElementById("audioPlayer");
 const playPauseBtn = document.querySelector("#play-pause-btn");
-
+const songTitle = document.querySelector("#song-title");
+console.log(songTitle);
+const coverImg = document.querySelector("#cover-image");
+console.log(coverImg);
 // track
 function loadTrack(i) {
   index = i;
   const t = tracks[i];
   audioPlayer.src = t.src;
   songTitle.textContent = t.title;
+  console.log(t.title);
   coverImg.src = t.cover;
+  audioPlayer.load();
+  audioPlayer.play();
 }
 // shuffle button
 
@@ -108,4 +114,20 @@ function toggleAudio() {
     audioPlayer.muted = true;
     muteUnmuteImg.src = "https://img.icons8.com/ios-glyphs/30/no-audio--v1.png";
   }
+}
+
+// shuffle - play a random song
+const shuffleButton = document.querySelector("#shuffle-btn");
+console.log(shuffleButton);
+
+shuffleButton.addEventListener("click", playRandomSong);
+
+// const muteUnmuteImg = document.querySelector("#mute-img");
+// console.log(muteUnmuteImg);
+
+function playRandomSong() {
+  let randomChoice = Math.floor(Math.random() * 11);
+  console.log(randomChoice);
+  loadTrack(randomChoice);
+  audioPlayer.play();
 }

@@ -4,23 +4,49 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Music Album - home</title>
+    <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lugrasimo&family=Sedan+SC&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Lugrasimo&family=Modak&family=Slackey&family=Unna:ital,wght@0,400;0,700;1,400;1,700&display=swap"
       rel="stylesheet"
     />
+    <script src="script.js" defer></script>
   </head>
-  <!-- I created the home page, which I put the album cover as the background with the title to grab user's attention and reduces decision fatigue before users enter the album. -->
-  <body class="home-page">
-    <img class="home-bg" src="cover.png" alt="cover" />
-    <div class="overlay" aria-hidden="true"></div>
-
-    <section class="home-content">
-      <h1 id="title">Preludes, Book 1 - Streams</h1>
-      <p id="sub-title">Album By Yehezkel Raz</p>
-      <a class="explore-btn" href="playlist.html">Explore the Album</a>
-    </section>
+  <header class="top-header">
+    <nav class="primary-nav" aria-label="Primary">
+      <ul class="nav">
+        <li><a href="about.html">About</a></li>
+        <li><a href="album.html">Album</a></li>
+        <li><a href="playlist.html">Playlist</a></li>
+      </ul>
+    </nav>
+  </header>
+  <body>
+    <div class="main">
+      <h1>Emotion Dice</h1>
+      <!-- dice -->
+      <div class="side">
+        <div class="dice-container">
+          <img id="dice" src="images/dice-cover.png" alt="dice" width="150" />
+        </div>
+        <audio id="audioPlayer" preload="metadata"></audio>
+        <!-- panel -->
+        <div class="panel">
+          <div class="song-title">
+            <div class="player-control">
+              <button id="playPauseBtn" class="btn">
+                <img id="playPauseIcon" src="icon/pause.png" alt="play" />
+              </button>
+              <button id="muteBtn" class="btn">
+                <img id="muteIcon" src="icon/mute.png" alt="unmute" />
+              </button>
+            </div>
+          </div>
+        </div>
+        <button id="rollBtn">Roll the dice</button>
+      </div>
+    </div>
   </body>
 </html>
