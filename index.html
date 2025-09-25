@@ -14,16 +14,16 @@
     />
     <script src="script.js" defer></script>
   </head>
-  <header class="top-header">
-    <nav class="primary-nav" aria-label="Primary">
-      <ul class="nav">
-        <li><a href="about.html">About</a></li>
-        <li><a href="album.html">Album</a></li>
-        <li><a href="playlist.html">Playlist</a></li>
-      </ul>
-    </nav>
-  </header>
   <body>
+    <header class="top-header">
+      <nav class="primary-nav" aria-label="Primary">
+        <ul class="nav">
+          <li><a href="about.html">About</a></li>
+          <li><a href="index.html">Playlist</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </nav>
+    </header>
     <div class="main">
       <h1>Emotion Dice</h1>
       <!-- dice -->
@@ -33,20 +33,22 @@
         </div>
         <audio id="audioPlayer" preload="metadata"></audio>
         <!-- panel -->
-        <div class="panel">
-          <div class="song-title">
-            <div class="player-control">
-              <button id="playPauseBtn" class="btn">
-                <img id="playPauseIcon" src="icon/pause.png" alt="play" />
-              </button>
-              <button id="muteBtn" class="btn">
-                <img id="muteIcon" src="icon/mute.png" alt="unmute" />
-              </button>
-            </div>
+        <div class="panel" aria-live="polite">
+          <div class="song-title"></div>
+          <div id="progress-container">
+            <span id="progress-bar"></span>
+          </div>
+          <div class="player-control">
+            <button id="playPauseBtn" class="btn" aria-label="Pause">
+              <img id="playPauseIcon" src="icon/pause.png" alt="" />
+            </button>
+            <button id="muteBtn" class="btn" aria-label="Mute">
+              <img id="muteIcon" src="icon/mute.png" alt="" />
+            </button>
           </div>
         </div>
-        <button id="rollBtn">Roll the dice</button>
       </div>
+      <button id="rollBtn">Roll the dice</button>
     </div>
   </body>
 </html>

@@ -1,133 +1,142 @@
-const tracks = [
+const dice = document.getElementById("dice");
+const playPauseBtn = document.getElementById("playPauseBtn");
+const playPauseIcon = document.getElementById("playPauseIcon");
+const muteBtn = document.getElementById("muteBtn");
+const muteIcon = document.getElementById("muteIcon");
+const rollBtn = document.getElementById("rollBtn");
+const audioPlayer = document.getElementById("audioPlayer");
+const songTitleEl = document.querySelector(".song-title");
+const panel = document.querySelector(".panel");
+const progressBar = document.querySelector("#progress-bar");
+const progressBarContainer = document.querySelector("#progress-container");
+
+const faces = [
   {
-    title: "Track 01 - Ballerina",
-    src: "audio/track1.mp3",
-    cover: "album-cover.png",
+    label: "Happy",
+    img: "images/dice-5.png",
+    audio: "music/happy.mp3",
+    title: "Happy Vibe",
   },
   {
-    title: "Track 02 - Laniakea",
-    src: "audio/track2.mp3",
-    cover: "album-cover.png",
+    label: "Sad",
+    img: "images/dice-6.png",
+    audio: "music/sad.mp3",
+    title: "Sad Piano",
   },
   {
-    title: "Track 03 - Slowly Understanding",
-    src: "audio/track3.mp3",
-    cover: "album-cover.png",
+    label: "Angry",
+    img: "images/dice-2.png",
+    audio: "music/angry.mp3",
+    title: "Evil Clown's Anthem",
   },
   {
-    title: "Track 04 - Before You Left",
-    src: "audio/track4.mp3",
-    cover: "album-cover.png",
+    label: "Calm",
+    img: "images/dice-3.png",
+    audio: "music/calm.mp3",
+    title: "Lofi Relax",
   },
   {
-    title: "Track 05 - Breath In",
-    src: "audio/track5.mp3",
-    cover: "album-cover.png",
+    label: "Excited",
+    img: "images/dice-4.png",
+    audio: "music/excited.mp3",
+    title: "Big Day Out",
   },
   {
-    title: "Track 06 - Carousel",
-    src: "audio/track6.mp3",
-    cover: "album-cover.png",
-  },
-  {
-    title: "Track 07 - Continuance",
-    src: "audio/track7.mp3",
-    cover: "album-cover.png",
-  },
-  {
-    title: "Track 08 - Breath out",
-    src: "audio/track8.mp3",
-    cover: "album-cover.png",
-  },
-  {
-    title: "Track 09 - After You Came",
-    src: "audio/track9.mp3",
-    cover: "album-cover.png",
-  },
-  {
-    title: "Track 10 - Closing Time",
-    src: "audio/track10.mp3",
-    cover: "album-cover.png",
-  },
-  {
-    title: "Track 11 - Ballerina - Slowed and Reverbed",
-    src: "audio/track11.mp3",
-    cover: "album-cover.png",
+    label: "Frustrated",
+    img: "images/dice-1.png",
+    audio: "music/frustrated.mp3",
+    title: "Hard Times",
   },
 ];
-const audioPlayer = document.getElementById("audioPlayer");
-const playPauseBtn = document.querySelector("#play-pause-btn");
-const songTitle = document.querySelector("#song-title");
-console.log(songTitle);
-const coverImg = document.querySelector("#cover-image");
-console.log(coverImg);
-// track
-function loadTrack(i) {
-  index = i;
-  const t = tracks[i];
-  audioPlayer.src = t.src;
-  songTitle.textContent = t.title;
-  console.log(t.title);
-  coverImg.src = t.cover;
-  audioPlayer.load();
-  audioPlayer.play();
-}
-// shuffle button
 
-// play and pause button
-const playPauseButton = document.querySelector("#play-pause-btn");
+let currentIndex = -1;
+
+function rollDice() {
+  let counter = 0;
+  dice.classList.add("rolling");
+  const rollInterval = setInterval(() => {
+    const idx = Math.floor(Math.random() * faces.length);
+    dice.src = faces[idx].img;
+    counter++;
+    if (counter > 10) {
+      clearInterval(rollInterval);
+      const finalIndex = Math.floor(Math.random() * faces.length);
+      dice.src = faces[finalIndex].img;
+      dice.classList.remove("rolling");
+      playEmotion(finalIndex);
+    }
+  }, 100);
+}
+
+// progress bar
+audioPlayer.addEventListener("timeupdate", updateProgress);
+audioPlayer.addEventListener("loadedmetadata", () => {
+  progressBar.style.width = "0%";
+});
+audioPlayer.addEventListener("ended", () => {
+  progressBar.style.width = "100%";
+});
+
+function updateProgress() {
+  if (!isFinite(audioPlayer.duration) || audioPlayer.duration === 0) return;
+  const pct = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+  progressBar.style.width = pct + "%";
+}
+
+// Play and puse button
+const playPauseButton = document.querySelector("#playPauseBtn");
 console.log(playPauseButton);
 
 playPauseButton.addEventListener("click", togglePlayback);
 
-const playPauseImg = document.querySelector("#play-pause-img");
+const playPauseImg = document.querySelector("#playPauseIcon");
 console.log(playPauseImg);
 
 function togglePlayback() {
-  if (!audioPlayer.src) loadTrack(0);
   if (audioPlayer.paused || audioPlayer.ended) {
     audioPlayer.play();
-    playPauseImg.src = "https://img.icons8.com/ios-glyphs/30/play--v1.png";
-    playPauseButton.setAttribute("aria-label", "Pause");
+    playPauseImg.src = "icon/pause.png";
   } else {
     audioPlayer.pause();
-    playPauseImg.src =
-      "https://img.icons8.com/?size=100&id=pSwquXkxwLD8&format=png&color=000000";
+    playPauseImg.src = "icon/play.png";
   }
 }
 
-// mute and unmute button
-const muteUnmuteButton = document.querySelector("#mute-btn");
+// mute button
+const muteUnmuteButton = document.querySelector("#muteBtn");
 console.log(muteUnmuteButton);
 
 muteUnmuteButton.addEventListener("click", toggleAudio);
 
-const muteUnmuteImg = document.querySelector("#mute-img");
+const muteUnmuteImg = document.querySelector("#muteIcon");
 console.log(muteUnmuteImg);
 
 function toggleAudio() {
   if (audioPlayer.muted) {
     audioPlayer.muted = false;
-    muteUnmuteImg.src =
-      "https://img.icons8.com/ios-glyphs/30/high-volume--v2.png";
+    muteUnmuteImg.src = "icon/mute.png";
   } else {
     audioPlayer.muted = true;
-    muteUnmuteImg.src = "https://img.icons8.com/ios-glyphs/30/no-audio--v1.png";
+    muteUnmuteImg.src = "icon/unmute.png";
   }
 }
 
-// shuffle - play a random song
-const shuffleButton = document.querySelector("#shuffle-btn");
-console.log(shuffleButton);
+function playEmotion(index) {
+  const f = faces[index];
+  if (!f) return;
 
-shuffleButton.addEventListener("click", playRandomSong);
+  audioPlayer.pause();
+  audioPlayer.currentTime = 0;
+  audioPlayer.src = f.audio;
 
-// const muteUnmuteImg = document.querySelector("#mute-img");
-// console.log(muteUnmuteImg);
+  const panel = document.querySelector(".panel");
+  panel.classList.add("show");
 
-function playRandomSong() {
-  let randomChoice = Math.floor(Math.random() * 11);
-  console.log(randomChoice);
-  loadTrack(randomChoice);
-  audioPlayer.play();
+  songTitleEl.textContent = `${f.label} — Now playing: ${f.title}`;
+
+  audioPlayer.play().catch(() => {
+    songTitleEl.textContent += "(Press Play to start)";
+  });
 }
+
+rollBtn.addEventListener("click", rollDice);
