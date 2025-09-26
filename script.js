@@ -10,6 +10,9 @@ const panel = document.querySelector(".panel");
 const progressBar = document.querySelector("#progress-bar");
 const progressBarContainer = document.querySelector("#progress-container");
 
+// When people press the dice, the skeuomorphic object randomly
+// selects one of six tracks with emotion labels, allowing users
+// to explore easily and enjoyably while also focusing on the music.
 const faces = [
   {
     label: "Happy",
@@ -68,20 +71,14 @@ function rollDice() {
   }, 100);
 }
 
-// progress bar
-audioPlayer.addEventListener("timeupdate", updateProgress);
-audioPlayer.addEventListener("loadedmetadata", () => {
-  progressBar.style.width = "0%";
-});
-audioPlayer.addEventListener("ended", () => {
-  progressBar.style.width = "100%";
-});
-
-function updateProgress() {
-  if (!isFinite(audioPlayer.duration) || audioPlayer.duration === 0) return;
-  const pct = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-  progressBar.style.width = pct + "%";
-}
+// In the core control, the play and pause buttons are the most
+// important functions. Through the icon switch, people can clearly
+// control the sound playback. I also added a mute button to quickly
+// switch between shared and quiet environments. I included these two
+// buttons because they are the most basic and low cognitive load
+// controls. When hovering, they provide immediate feedback through
+// size and color, thus increasing clarity and accessibility, allowing
+// users to listen easily and based on their mood.
 
 // Play and puse button
 const playPauseButton = document.querySelector("#playPauseBtn");
@@ -137,6 +134,22 @@ function playEmotion(index) {
   audioPlayer.play().catch(() => {
     songTitleEl.textContent += "(Press Play to start)";
   });
+}
+
+// progress bar
+// The progress bar supports time perception and responds to music status.
+audioPlayer.addEventListener("timeupdate", updateProgress);
+audioPlayer.addEventListener("loadedmetadata", () => {
+  progressBar.style.width = "0%";
+});
+audioPlayer.addEventListener("ended", () => {
+  progressBar.style.width = "100%";
+});
+
+function updateProgress() {
+  if (!isFinite(audioPlayer.duration) || audioPlayer.duration === 0) return;
+  const pct = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+  progressBar.style.width = pct + "%";
 }
 
 rollBtn.addEventListener("click", rollDice);
