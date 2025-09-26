@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Music Album - home</title>
+    <title>Music Album - Playlist</title>
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,29 +15,44 @@
     <script src="script.js" defer></script>
   </head>
   <body>
+    <!--The header navigation provides links to other pages, thus keeping 
+    the page clear while still providing information.  -->
     <header class="top-header">
       <nav class="primary-nav" aria-label="Primary">
         <ul class="nav">
           <li><a href="about.html">About</a></li>
           <li><a href="index.html">Playlist</a></li>
-          <li><a href="reference.html">Reference</a></li>
+          <li><a href="reference.html">References</a></li>
         </ul>
       </nav>
     </header>
     <div class="main">
       <h1>Emotion Dice</h1>
       <!-- dice -->
+      <!-- I designed the album as a playful exploration interface, 
+        rather than a traditional static tracklist. This Emotion Dice 
+        is a skeuomorphic dice that includes six moods and randomly
+        selects with a matching track. Through connecting the dice with 
+        emotions, it becomes like a self-discover tool, reflecting people's 
+        inner emotions rather than a strict chronological order is not only 
+        an increasingly common way for listeners to choose albums and 
+        playlists, but also increases playfullness and engagement.
+         -->
       <div class="side">
         <div class="dice-container">
           <img id="dice" src="images/dice-cover.png" alt="dice" width="150" />
         </div>
         <audio id="audioPlayer" preload="metadata"></audio>
         <!-- panel -->
+        <!-- The panel uses progressive disclosure, when users first enter
+          the page, there is only a roll dice button, which makes the mapping
+          direct and clear without causing cognitive burden.   -->
         <div class="panel" aria-live="polite">
           <div class="song-title"></div>
           <div id="progress-container">
             <span id="progress-bar"></span>
           </div>
+          <!-- Utilizes aria-label and noopener can avoids autoplay and lose control. -->
           <div class="player-control">
             <button id="playPauseBtn" class="btn" aria-label="Pause">
               <img id="playPauseIcon" src="icon/pause.png" alt="" />
